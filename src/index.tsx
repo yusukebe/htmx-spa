@@ -80,7 +80,7 @@ app.get('/shops', async (c) => {
 const shopInfo: Record<string, Shop | undefined> = {}
 
 const ShopComponent: FC<{ shopId: string }> = async ({ shopId }) => {
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+  await new Promise((resolve) => setTimeout(resolve, 1000)) // Force sleep
   let shop = shopInfo[shopId]
   if (!shop) {
     const res = await fetch(new URL(`/shops/${shopId}`, BASE_URL))
