@@ -113,17 +113,6 @@ const ShopComponent: FC<{ shopId: string }> = async ({ shopId }) => {
 
 app.get('/shops/:shopId', async (c) => {
   const { shopId } = c.req.param()
-  let shop = shopInfo[shopId]
-  if (!shop) {
-    const res = await fetch(new URL(`/shops/${shopId}`, BASE_URL))
-    const data = (await res.json()) as { shop: Shop }
-    shop = data.shop
-    shopInfo[shopId] = shop
-  }
-  const className = css`
-    padding: 2px;
-    border: 1px solid #999;
-  `
   return c.render(
     <Suspense fallback={'loading...'}>
       <ShopComponent shopId={shopId} />
